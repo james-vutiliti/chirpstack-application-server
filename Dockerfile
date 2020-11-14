@@ -18,4 +18,6 @@ FROM alpine:3.11.2 AS production
 
 RUN apk --no-cache add ca-certificates
 COPY --from=development /chirpstack-application-server/build/chirpstack-application-server /usr/bin/chirpstack-application-server
+RUN addgroup -S chirpstack_as && adduser -S chirpstack_as -G chirpstack_as
+USER chirpstack_as
 ENTRYPOINT ["/usr/bin/chirpstack-application-server"]
