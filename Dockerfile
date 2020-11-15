@@ -20,4 +20,5 @@ RUN apk --no-cache add ca-certificates
 COPY --from=development /chirpstack-application-server/build/chirpstack-application-server /usr/bin/chirpstack-application-server
 RUN addgroup -S chirpstack_as && adduser -S chirpstack_as -G chirpstack_as
 USER chirpstack_as
+COPY configuration/chirpstack-application-server/chirpstack-application-server.toml /etc/chirpstack-network-server/chirpstack-application-server.toml
 ENTRYPOINT ["/usr/bin/chirpstack-application-server"]
